@@ -57,4 +57,4 @@ function PersonalGallery() {
   )
 }
 
-export default PersonalGallery
+export default PersonalGallery;
