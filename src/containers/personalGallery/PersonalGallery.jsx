@@ -1,17 +1,20 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { storage } from './firebaseConfig';
+import { storage, db } from './firebaseConfig';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import './personalGallery.css'
-import { ImageList, ImageListItem } from '@mui/material';
-
+import { collapseClasses, ImageList, ImageListItem } from '@mui/material';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 function PersonalGallery() {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "images/");
+
+  // reference to our firestore database collection
+  const userCollectionRef = collection(db, "galleryUsers");
 
   const uploadImage = () => {
     if(imageUpload==null) return;
@@ -33,9 +36,37 @@ function PersonalGallery() {
           })
         })
       })
-  }, []);
+  }, []);   
+
+  // Configuring CRUD (Create, Read, Update, Delete) operations for our firestore database
+  const [users, setUsers] = useState([]); 
+
+  useEffect(() => {
+    // Step 1: create an asynchronous function
+    // Everytime you make a request to an API it will always return a promise which is
+    // just data that needs to be resolved. 
+    // Whenever you make an API call in JavaScript you need to use async keyword or .then/.catch notation. 
+    
+    // creating the async function
+    const getUsers = async() => {
+      const data = await getDocs(userCollectionRef);
+      // returning our data in a readable format
+      setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    }
+
+    getUsers(); 
+  }, [])
+
   return (
     <div>
+      {users.map((user) => {
+        return ( 
+          <div>
+            <h1> Name: {user.name}</h1>
+            <h1>Age: {user.age}</h1>
+          </div>
+        )
+      })}
       <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
         {imageList.map((url) => (
           <ImageListItem key={url}>

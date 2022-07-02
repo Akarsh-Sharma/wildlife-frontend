@@ -20,7 +20,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/personalGallery' element={<PersonalGallery/>} />
           <Route path='/publicGallery' element={<PublicGallery/>} />
-          <Route path='/profile' element={<Profile/>} />
+          <Route path='/Profile' element={<Profile/>} />
         </Routes>
       </Router>
     

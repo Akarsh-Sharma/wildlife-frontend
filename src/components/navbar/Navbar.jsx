@@ -16,8 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const pages = ['home', 'public Gallery'];
-const links = ['fss', 'publicGallery'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login', 'Sign in'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -154,7 +153,7 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => navigate(`/${setting}`)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
