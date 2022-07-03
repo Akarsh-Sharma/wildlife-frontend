@@ -6,6 +6,7 @@ import PersonalGallery from "./containers/personalGallery/PersonalGallery";
 import PublicGallery from "./containers/publicGallery/PublicGallery";
 import Profile from "./containers/profile/Profile";
 import Navbar from './components/navbar/Navbar';
+import SignIn from './containers/signin/SignIn';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/personalGallery' element={<PersonalGallery/>} />
           <Route path='/publicGallery' element={<PublicGallery/>} />
           <Route path='/Profile' element={<Profile/>} />
+          <Route path='/SignIn' element={<SignIn/>} />
         </Routes>
       </Router>
     

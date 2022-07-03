@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const pages = ['home', 'public Gallery'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login', 'Sign in'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login', 'SignIn'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -93,8 +93,9 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigate(`/${page}`)}>
+                <MenuItem key={page} onClick={() => navigate(`/${page.replace(/ /g, '')}`)}>
                   <Typography textAlign="center">{page}</Typography>
+                  
                 </MenuItem>
               ))}
             </Menu>
