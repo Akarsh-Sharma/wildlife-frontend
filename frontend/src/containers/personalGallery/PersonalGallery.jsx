@@ -59,6 +59,7 @@ function PersonalGallery() {
 
   return (
     <div>
+      <div className='Main-header'> Your Gallery </div>
       {users.map((user) => {
         return ( 
           <div>
@@ -67,6 +68,8 @@ function PersonalGallery() {
           </div>
         )
       })}
+
+      <div className='Image-List'>
       <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
         {imageList.map((url) => (
           <ImageListItem key={url}>
@@ -78,6 +81,7 @@ function PersonalGallery() {
           </ImageListItem>
         ))}
       </ImageList>
+      </div>
       <input type="file" onChange={(event) => {
         setImageUpload(event.target.files[0])
         console.log(event.target.files[0].name);

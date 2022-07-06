@@ -1,0 +1,11 @@
+@import url("//fonts.googleapis.com/css2?family=Euphoria+Script:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+.Main-header {
+    text-align: center;
+    background-color: lightskyblue;
+    font-size:80px;
+    font-family:'Euphoria Script', handwriting;
+    font-weight:500;
+    text-shadow:rgb(255, 255, 255) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px;
+}
+

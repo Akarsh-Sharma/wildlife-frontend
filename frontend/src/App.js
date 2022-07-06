@@ -11,7 +11,7 @@ import SignIn from './containers/signin/SignIn';
 function App() {
 
   return (
-    
+    <div className='App'>
       <Router> 
       {  /* Whatever is written between outside the <Routes> tag will be shown on every page. */ }
 
@@ -25,7 +25,7 @@ function App() {
           <Route path='/SignIn' element={<SignIn/>} />
         </Routes>
       </Router>
-    
+    </div>
   );
 }
 

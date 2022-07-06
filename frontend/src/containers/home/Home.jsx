@@ -8,9 +8,9 @@ function Home() {
   return (
     <div>
       
-      Home
+    <div className='Main-header'>Home</div>
 
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2}  justifyContent="center">
       <Button variant="contained" onClick={() =>{navigate("/publicGallery");}}>View Gallery</Button>
     </Stack>
     </div>
