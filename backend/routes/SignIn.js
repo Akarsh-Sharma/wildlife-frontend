@@ -1,7 +1,7 @@
 const express = require('express'),
 router = express.Router() , 
-SignIn = require('../controllers/SignIn')
+BackendSignIn = require('../controllers/BackendSignIn')
 
-router.get('/', SignIn.SignIn)
+router.get('/', BackendSignIn.SignIn)
 
 module.exports = router
