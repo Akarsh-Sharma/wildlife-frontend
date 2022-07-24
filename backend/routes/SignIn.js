@@ -2,6 +2,6 @@ import { Router } from 'express'
 import { SignIn } from '../controllers/BackendSignIn.js'
 const router = Router()
 
-router.get('/', SignIn)
+router.post('/', SignIn)
 
 export default router
