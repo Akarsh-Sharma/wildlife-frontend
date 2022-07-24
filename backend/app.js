@@ -1,19 +1,18 @@
-const express = require('express')
+import express from 'express'
+import cors from "cors";
+import "dotenv/config";
+import SignIn from "./routes/SignIn.js";
+import bodyParser from 'body-parser';
 const app = express()
-var cors = require("cors")
-var BackendSignInRouter = require('./routes/SignIn')
-
-const bodyParser = require("body-parser");
-require('dotenv').config()
-
 app.use(
-    bodyParser.urlencoded({
-      extended: true,
-    })
-  );
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/", BackendSignInRouter)
+app.use("/", SignIn);
+
 
 const PORT = process.env.PORT || 3001
 

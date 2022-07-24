@@ -1,7 +1,7 @@
-const express = require('express'),
-router = express.Router() , 
-BackendSignIn = require('../controllers/BackendSignIn')
+import { Router } from 'express'
+import { SignIn } from '../controllers/BackendSignIn.js'
+const router = Router()
 
-router.post('/', BackendSignIn.SignIn)
+router.get('/', SignIn)
 
-module.exports = router
+export default router

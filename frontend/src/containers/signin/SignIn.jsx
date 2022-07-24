@@ -14,8 +14,9 @@ export default function SignIn(){
           },
           body: JSON.stringify({"email":"akarsh@gmail.com", "password": "akarsh"})
        })
-  .then(res => res.json())
-  .then(res => setResponse(res))
+  .then(response => response.json())
+  .then(response => {setResponse(response)
+                })
   })
 return (  <div className='SignIn'>
 
