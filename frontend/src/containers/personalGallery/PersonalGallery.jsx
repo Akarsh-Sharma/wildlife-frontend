@@ -5,7 +5,7 @@ import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import './personalGallery.css'
 import { collapseClasses, ImageList, ImageListItem } from '@mui/material';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 
 function PersonalGallery() {
@@ -19,9 +19,13 @@ function PersonalGallery() {
   const uploadImage = () => {
     if(imageUpload==null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    console.log("Sharma" + imageRef.getDownloadURL + "Sharmaa")
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
+        // Getting the url for the image firestore api here!
+        setImageUrl(JSON.stringify(url))
         setImageList((prev) => [...prev, url]);
+        
       });
       
     });
@@ -50,12 +54,25 @@ function PersonalGallery() {
     // creating the async function
     const getUsers = async() => {
       const data = await getDocs(userCollectionRef);
+      console.log(data)
       // returning our data in a readable format
       setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
     }
 
     getUsers(); 
-  }, [])
+  }, []);
+
+  // Adding image details to image database on firestore when we upload an image
+  const imageCollectionRef = collection(db, "galleryImages")
+  const [imageName, setImageName] = useState("");
+  const [imageDate, setImageDate] = useState(0);
+  const [imageUrl, setImageUrl] = useState(""); 
+
+
+  const sendImageToDatabase  = async () => {
+      await addDoc(imageCollectionRef, {imageName: imageName, imageDate: imageDate, imageUrl: imageUrl});
+  };
+
 
   return (
     <div>
@@ -63,8 +80,8 @@ function PersonalGallery() {
       {users.map((user) => {
         return ( 
           <div>
-            <h1> Name: {user.name}</h1>
-            <h1>Age: {user.age}</h1>
+            <h1> Name: {user.userName}</h1>
+            <h1>Age: {user.userAge}</h1>
           </div>
         )
       })}
@@ -87,7 +104,9 @@ function PersonalGallery() {
         console.log(event.target.files[0].name);
         }
       }/>
-      <button onClick={uploadImage}>Upload Image</button>
+      <button onClick={()=>{uploadImage(); sendImageToDatabase();}}>Upload Image</button>
+      <input placeholder='Image Name...' onChange={(event) => {setImageName(event.target.value)}}/>
+      <input placeholder='Image Date...' onChange={(event) => {setImageDate(event.target.value)}}/>
     </div>
   )
 }

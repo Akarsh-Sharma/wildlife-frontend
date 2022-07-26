@@ -18,11 +18,22 @@ export default function SignIn(){
   .then(response => {setResponse(response)
                 })
   })
+
+  const userCollectionRef = collection(db, "galleryUsers");
+
+  const [newName, setNewName] = useState("");
+  const [newAge, setNewAge] = useState(0);
+
+  const createUser  = async () => {
+      await addDoc(userCollectionRef, {userName: newName, userAge: newAge});
+  };
+
 return (  <div className='SignIn'>
 
         <p>{JSON.stringify(response)}</p>
-        <p>
-          Test
-        </p>
+
+        <button onClick={createUser}>Create User</button>
+        <input placeholder='Name...' onChange={(event) => {setNewName(event.target.value)}}/>
+        <input placeholder='Age...' onChange={(event) => {setNewAge(event.target.value)}}/>
     </div>)
 }
