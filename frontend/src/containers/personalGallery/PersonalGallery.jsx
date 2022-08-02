@@ -68,7 +68,7 @@ function PersonalGallery() {
   const [imageDate, setImageDate] = useState(0);
   const [imageUrl, setImageUrl] = useState(""); 
 
-
+  // Sending images to the image api from the frontend 
   const sendImageToDatabase  = async () => {
       await addDoc(imageCollectionRef, {imageName: imageName, imageDate: imageDate, imageUrl: imageUrl});
   };
