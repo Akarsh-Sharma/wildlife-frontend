@@ -6,18 +6,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 export default function SignIn(){
 
   const [response, setResponse] = useState([])
-  /* useEffect(() =>{
-       fetch("http://localhost:3001/", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify()
-       })
-  .then(response => response.json())
-  .then(response => {setResponse(response)
-                })
-  }) */
+  
   useEffect(() => {
     const fetchSignedInUserData = async () => {
       const result = await fetch('http://localhost:3001')
@@ -37,15 +26,30 @@ export default function SignIn(){
   const [newAge, setNewAge] = useState(0);
 
   // Sending data to the api from the frontend
-  const createUser  = async () => {
-      await addDoc(userCollectionRef, {userName: newName, userAge: newAge});
-  };
+  
+  const sendUserData = async () => {
+      //await addDoc(userCollectionRef, {userName: newName, userAge: newAge});
+        const userData = {userName: newName, userAge: newAge}; 
+        console.log(userData)
+
+        const userResult = await fetch('http://localhost:3001', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData)
+        })
+        
+        const userResultInJson = await userResult.json(); 
+        console.log(userResultInJson);
+      }
+  
 
 return (  <div className='SignIn'>
 
         <p>{JSON.stringify(response)}</p>
 
-        <button onClick={createUser}>Create User</button>
+        <button onClick={sendUserData}>Create User</button>
         <input placeholder='Name...' onChange={(event) => {setNewName(event.target.value)}}/>
         <input placeholder='Age...' onChange={(event) => {setNewAge(event.target.value)}}/>
     </div>)

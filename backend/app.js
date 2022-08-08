@@ -5,6 +5,7 @@ import SignIn from "./routes/SignIn.js";
 import bodyParser from 'body-parser';
 import express from "express";
 import {db} from './db.js'
+import UserSignInRouter  from "./routes/UserSignInRouter.js";
 
 //Initialising Express
 const app = express();
@@ -19,10 +20,11 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
-app.get("/", SignIn); // change this to app.get
+app.get("/", SignIn); 
+app.post("/", UserSignInRouter);
 
 
-// Detect port number from the Node Server or use 5000
+// Detect port number from the Node Server or use 3001
 const PORT = process.env.PORT || 3001;
 
 // Listen for URIs on a port
