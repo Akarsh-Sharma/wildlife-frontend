@@ -1,11 +1,11 @@
 
 import cors from "cors";
 import "dotenv/config";
-import SignIn from "./routes/SignIn.js";
 import bodyParser from 'body-parser';
 import express from "express";
 import {db} from './db.js'
 import UserSignInRouter  from "./routes/UserSignInRouter.js";
+import ShowUsersRouter from "./routes/ShowUsersRouter.js";
 
 //Initialising Express
 const app = express();
@@ -20,7 +20,7 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
-app.get("/", SignIn); 
+app.get("/", ShowUsersRouter); 
 app.post("/", UserSignInRouter);
 
 

@@ -3,7 +3,7 @@ import {db} from '../db.js';
 
 
 // Get all the signed in users from the api and display it on the backend server
-export const SignIn = async (req, res) => {
+export const ShowUsers = async (req, res) => {
     try{
         let query = db.collection('galleryUsers');
         let response = []; 
