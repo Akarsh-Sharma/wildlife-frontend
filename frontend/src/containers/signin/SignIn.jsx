@@ -13,24 +13,19 @@ export default function SignIn(){
       const jsonResult = await result.json()
 
       setResponse(jsonResult)
-      console.log("Sharma")
-      
     }
 
     fetchSignedInUserData()
   }, [])
 
-  const userCollectionRef = collection(db, "galleryUsers");
-
   const [newName, setNewName] = useState("");
-  const [newAge, setNewAge] = useState(0);
+  const [newPassword, setNewPassword] = useState("");
 
   // Sending data to the api from the frontend
   
   const sendUserData = async () => {
       //await addDoc(userCollectionRef, {userName: newName, userAge: newAge});
-        const userData = {userName: newName, userAge: newAge}; 
-        console.log(userData)
+        const userData = {userName: newName, userPassword: newPassword}; 
 
         const userResult = await fetch('http://localhost:3001', {
           method: 'POST',
@@ -51,6 +46,6 @@ return (  <div className='SignIn'>
 
         <button onClick={sendUserData}>Create User</button>
         <input placeholder='Name...' onChange={(event) => {setNewName(event.target.value)}}/>
-        <input placeholder='Age...' onChange={(event) => {setNewAge(event.target.value)}}/>
+        <input placeholder='Password...' onChange={(event) => {setNewPassword(event.target.value)}}/>
     </div>)
 }

@@ -19,7 +19,6 @@ function PersonalGallery() {
   const uploadImage = () => {
     if(imageUpload==null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    console.log("Sharma" + imageRef.getDownloadURL + "Sharmaa")
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         // Getting the url for the image firestore api here!

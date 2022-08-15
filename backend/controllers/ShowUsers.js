@@ -1,4 +1,3 @@
-import { collection, getDocs, addDoc, QuerySnapshot } from 'firebase/firestore';
 import {db} from '../db.js';
 
 
@@ -13,14 +12,15 @@ export const ShowUsers = async (req, res) => {
 
             for(let doc of docs) {
                 const selectedItem = {
-                    userAge: doc.data().userAge,
-                    userName: doc.data().userName
+                    userPassword: doc.data().userPassword,
+                    userName: doc.data().userName 
                 };
                 response.push(selectedItem);
             }
             return response; // because then should return an item
         })
         // Sucessfully queried data
+        console.log("Akarsh")
         return res.status(200).send(response);
     }
     catch(error){
