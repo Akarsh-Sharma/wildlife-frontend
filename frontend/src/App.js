@@ -1,12 +1,12 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from "./containers/home/Home";
-import Login from "./containers/login/Login";
 import PersonalGallery from "./containers/personalGallery/PersonalGallery";
 import PublicGallery from "./containers/publicGallery/PublicGallery";
 import Profile from "./containers/profile/Profile";
 import Navbar from './components/navbar/Navbar';
 import SignIn from './containers/signin/SignIn';
+import Register from './containers/Register/Register';
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
         <Navbar></Navbar>
         <Routes>
           <Route path='/home' element={<Home/>} />
-          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
           <Route path='/personalGallery' element={<PersonalGallery/>} />
           <Route path='/publicGallery' element={<PublicGallery/>} />
           <Route path='/Profile' element={<Profile/>} />

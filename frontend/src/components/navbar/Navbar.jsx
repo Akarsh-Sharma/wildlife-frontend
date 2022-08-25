@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const pages = ['home', 'public Gallery'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login', 'SignIn'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Register', 'SignIn'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

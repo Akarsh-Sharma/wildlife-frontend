@@ -21,13 +21,15 @@ export default function SignIn(){
   const [newName, setNewName] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
+  // TO BE CHANGED **
   // Sending data to the api from the frontend
   
   const sendUserData = async () => {
       //await addDoc(userCollectionRef, {userName: newName, userAge: newAge});
         const userData = {userName: newName, userPassword: newPassword}; 
-
-        const userResult = await fetch('http://localhost:3001', {
+        
+        // fetch localhost:3001/auth/SignIn
+        const userResult = await fetch('http://localhost:3001/auth/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

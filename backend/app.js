@@ -3,9 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import bodyParser from 'body-parser';
 import express from "express";
-import UserSignInRouter  from "./routes/UserSignInRouter.js";
+import AuthRouter  from "./routes/AuthRouter.js";
 import ShowUsersRouter from "./routes/ShowUsersRouter.js";
-import AuthenticateLoggedInUsers from "./routes/AuthenticateLoggedInUsersRouter.js";
 
 
 //Initialising Express
@@ -22,8 +21,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 app.get("/", ShowUsersRouter); 
-app.post("/", UserSignInRouter);
-app.post("/", AuthenticateLoggedInUsers);
+app.post("/auth", AuthRouter);
 
 
 // Detect port number from the Node Server or use 3001
