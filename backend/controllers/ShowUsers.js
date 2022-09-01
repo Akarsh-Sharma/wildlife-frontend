@@ -20,7 +20,6 @@ export const ShowUsers = async (req, res) => {
             return response; // because then should return an item
         })
         // Sucessfully queried data
-        console.log("Akarsh")
         return res.status(200).send(response);
     }
     catch(error){

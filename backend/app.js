@@ -20,8 +20,8 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
-app.get("/", ShowUsersRouter); 
-app.post("/auth", AuthRouter);
+app.use("/", ShowUsersRouter); 
+app.use("/auth", AuthRouter);
 
 
 // Detect port number from the Node Server or use 3001
