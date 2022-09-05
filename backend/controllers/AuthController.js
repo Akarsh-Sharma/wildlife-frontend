@@ -1,5 +1,7 @@
 import {db} from '../db.js';
 import bcrypt from "bcrypt";
+import jsonwebtoken from "jsonwebtoken";
+
 
 // the list of users that have already created an account. 
 let response = []; 
@@ -50,7 +52,6 @@ export const UserRegister = async (req, res) => {
 };
 
 export const UserLogIn = async (req, res) => {
-
     const user = response.find(user => user.userName === req.body.userName)
     if(user == null){
         return res.status(400).send('Cannot find user')
@@ -59,11 +60,9 @@ export const UserLogIn = async (req, res) => {
     try {
 
         if(await bcrypt.compare(req.body.userPassword, user.userPassword)){
-            res.send("Sucess")
             console.log('TEST2')
         }
         else{
-            res.send('Incorrect username or password')
             console.log("TEST")
         }
 
@@ -71,4 +70,13 @@ export const UserLogIn = async (req, res) => {
         // Handle error
         return res.status(500).send()
     }
+    
+    // if user has been authenticated we serialize the user using jwt tokens
+    const jwt = jsonwebtoken; 
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+    // if the user is authenticated properly then we will return an access token that contains the 
+    // user information
+    res.json({accessToken: accessToken});
+    console.log(accessToken)
+
 }
