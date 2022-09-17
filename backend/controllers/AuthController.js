@@ -65,10 +65,10 @@ export const UserLogIn = async (req, res) => {
     try {
         // if password is valid
         if(await bcrypt.compare(req.body.userPassword, foundUser.userPassword)){
-            console.log('TEST2')
+            console.log('Logged in Sucessfully!')
         }
         else{
-            console.log("TEST")
+            console.log("Invalid password!")
         }
 
     } catch{

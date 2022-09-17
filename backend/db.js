@@ -1,6 +1,6 @@
 import assert from 'assert';
 import admin from 'firebase-admin';
-import  serviceAccount  from './serviceAccountKey.json' assert {type: "json"};
+import  serviceAccount  from './serviceAccountKey.js';
 import { initializeApp } from 'firebase-admin/app';
 
 initializeApp({
